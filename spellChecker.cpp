@@ -2,27 +2,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
-//#include <ofstream>
-//** Check the word is correct or not **
-//1. While we reads the file. string line = "qwidj qwidjwij eifjef"
-//                                  sperate qwidj <- run dictionary
-//2. Seperate the check.txt first, vector<string> words.
-//      for(i ~ words.size()) { checks[i] <- run dictionary
-//3. for(i ~ dictionary.size()) { dictionary[i] <- compare with .txt
 
-//function <- verb
-//bool <- possitive question
-//class <- noun
-//int, string <- noun
-
-
-//Check ways
-//1. swap
-//2. remove
-//3. add
-//4. replace
- //-- 한번돌 때 이 네가지의 함수를 실행해서 비교해보고 이때도
- //없으면 다음 단어로 통과
 SpellChecker::SpellChecker() {
 
 }
@@ -155,7 +135,7 @@ void SpellChecker::wordReplace(std::string inputWord,
     int index = 0;
 
     while(index <= inputWord.size()) {
-        for(int i = 0; i < 10; i++) { // 32까지 인데 편의상 10으로
+        for(int i = 0; i < 32; i++) {
             inputWord[index] = 'a' + i;
 
             for(int j = 0; j < inputDictionary.size(); j++) {
@@ -182,7 +162,7 @@ void SpellChecker::wordAdd(std::string inputWord,
     int count = 0;
 
     while(index <= inputWord.size()) {
-        for(int i = 0; i < 15; i++) {
+        for(int i = 0; i < 32; i++) {
             for(int k = 0; k < inputWord.size(); k++) {
                 if(index == 0 || index == k) {
                     changedWord += 'a' + i;
@@ -217,7 +197,7 @@ void SpellChecker::filterWord(std::string inputCheckWord,
     bool shouldLookForSuggestions = true;
     std::string cleanWord = generateCleanWords(inputCheckWord);
 
-    if(inputCheckWord.size() == 1) { //🥳
+    if(inputCheckWord.size() == 1) {
         shouldLookForSuggestions = false;
         answer.push_back(inputCheckWord);
     } else {
